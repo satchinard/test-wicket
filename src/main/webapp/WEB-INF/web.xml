@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <display-name>test-wicket</display-name>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:ApplicationContext.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    <filter>
+        <filter-name>openEntityManagerInViewFilter</filter-name>
+        <filter-class>
+            org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+        </filter-class>
+        <init-param>
+            <param-name>entityManagerFactoryBeanName</param-name>
+            <param-value>entityManagerFactory</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>TestWicket</filter-name>
+        <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
+        <init-param>
+            <param-name>applicationClassName</param-name>
+            <param-value>com.wicket.test.TestApplication</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>TestWicket</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>

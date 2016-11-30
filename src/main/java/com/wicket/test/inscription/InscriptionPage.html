@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulaires</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            .table {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            .table th, .table td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="margin-left: 15%; margin-right: 15%">
+            <div style="text-align: right">
+                Lomé, le <span wicket:id="dateJour"></span>&nbsp;&nbsp;
+                Langues : &nbsp;<select wicket:id="langue"></select></div>
+            <div wicket:id="erreurs"></div>
+            <form wicket:id="monForm">
+                <fieldset style="width: 70%;">
+                    <legend><wicket:message key="inscription"></wicket:message></legend>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><label><wicket:message key="nom"></wicket:message></label>*</td>
+                                <td><input type="text" wicket:id="nom"/></td>
+                                <td><label><wicket:message key="sexe"></wicket:message></label>*</td>
+                                <td><select wicket:id="sexe"/></td>
+                            </tr>
+                            <tr>
+                                <td><label><wicket:message key="prenom"></wicket:message></label>*</td>
+                                <td><input type="text" wicket:id="prenom"/></td>
+                                <td><label><wicket:message key="nationalite"></wicket:message></label></td>
+                                <td><select wicket:id="nationalite"/></td>
+                            </tr>
+                            <tr>
+                                <td><label><wicket:message key="dateNaissance"></wicket:message></label>*</td>
+                                <td><span wicket:id="dateNaissance"></span></td>
+                                <td><label><wicket:message key="alphabetise"></wicket:message></label>*</td>
+                                <td><span wicket:id="alphabetise">
+                                        <input type="radio" wicket:id="non"/>Non
+                                        <input type="radio" wicket:id="oui"/>Oui
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label><wicket:message key="lieuNaissance"></wicket:message></label></td>
+                                <td><input type="text" wicket:id="lieuNaissance"/></td>
+                                <td><label>Statut</label></td>
+                                <td><span wicket:id="statut">
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label><wicket:message key="cursus"></wicket:message></label></td>
+                                <td><select wicket:id="cursus"/></td>
+                                <td colspan="2">
+                                    <span wicket:id="nbAnnee">
+                                        <label><wicket:message key="nbAnnee"></wicket:message></label>
+                                        <input type="text" wicket:id="nbAnneeEtude"/>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: right">
+                                    <input type="submit" value="Valider" wicket:message="value:valider"/>
+                                </td>
+                                <td colspan="2">
+                                    <input type="reset" value="Annuler" wicket:message="value:annuler"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+        <div style="margin-left: 15%; margin-right: 15%">
+            <fieldset>
+                <legend><wicket:message key="listeInscrits">Liste des inscrits</wicket:message></legend>
+                <table wicket:id="inscriptions" class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prenoms</th>
+                            <th>Date naissance</th>
+                            <th>Statut</th>
+                            <th>Alphabétisé</th>
+                            <th>Nombre d'années</th>
+                            <th colspan="2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tr wicket:id="inscrits">
+                        <td><span wicket:id="nom"></span></td>
+                        <td><span wicket:id="prenom"></span></td>
+                        <td><span wicket:id="dateNaissance"></span></td>
+                        <td><span wicket:id="statut"></span></td>
+                        <td><span wicket:id="alphabetise"></span></td>
+                        <td><span wicket:id="nbAnneeEtude"></span></td>
+                        <td><a wicket:id="supprimer"><wicket:message key="supprimer">Supprimer</wicket:message></a>
+                            <a wicket:id="modifier"><wicket:message key="modifier">Modifier</wicket:message></a>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <div style="margin-left: 15%; margin-right: 15%">
+            <fieldset>
+                <legend><wicket:message key="listeInscrits">Liste des inscrits</wicket:message></legend>
+                <table wicket:id="dataInscrits" class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prenoms</th>
+                            <th>Date naissance</th>
+                            <th>Statut</th>
+                            <th>Alphabétisé</th>
+                            <th>Nombre d'années</th>
+                            <th colspan="2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr wicket:id="inscrits">
+                            <td><span wicket:id="nom"></span></td>
+                            <td><span wicket:id="prenom"></span></td>
+                            <td><span wicket:id="dateNaissance"></span></td>
+                            <td><span wicket:id="statut"></span></td>
+                            <td><span wicket:id="alphabetise"></span></td>
+                            <td><span wicket:id="nbAnneeEtude"></span></td>
+                            <td><a wicket:id="supprimer"><wicket:message key="supprimer">Supprimer</wicket:message></a>
+                                <a wicket:id="modifier"><wicket:message key="modifier">Modifier</wicket:message></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </body>
+</html>

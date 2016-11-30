@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulaires</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div style="margin-left: 15%; margin-right: 15%">
+            <fieldset style="width: 70%;">
+                <legend>Inscription</legend>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label>Nom</label></td>
+                            <td><input type="text" wicket:id="nom"/></td>
+                            <td><label>Sexe</label></td>
+                            <td><select wicket:id="sexe"/></td>
+                        </tr>
+                        <tr>
+                            <td><label>Prénoms</label></td>
+                            <td><input type="text" wicket:id="prenom"/></td>
+                            <td><label>Nationalite</label></td>
+                            <td><select wicket:id="nationalite"/></td>
+                        </tr>
+                        <tr>
+                            <td><label>Date naissance</label></td>
+                            <td><span wicket:id="dateNaissance"></span></td>
+                            <td><label>Alphabetise</label></td>
+                            <td><span wicket:id="scolarite">
+                                    <input type="radio" wicket:id="non"/>
+                                    <input type="radio" wicket:id="oui"/>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Lieu de naissance</label></td>
+                            <td><input type="text" wicket:id="lieuNaissance"/></td>
+                            <td><label>Statut</label></td>
+                            <td><span wicket:id="statut">
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Cursus</label></td>
+                            <td><select wicket:id="cursus"/></td>
+                            <td colspan="2">
+                                <span wicket:id="nbAnnee">
+                                    <label>Nomre d'années</label>
+                                    <input type="text" wicket:id="nbAnneeEtude"/>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </body>
+</html>
