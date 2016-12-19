@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap avec Wicket</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+
+            <!-- Static navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed"
+                                data-toggle="collapse" data-target="#navbar"
+                                aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Menus</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Gestion d'école</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Professeurs</a></li>
+                            <li><a href="#">Matières</a></li>
+                            <li><a href="#">Classes</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                   role="button" aria-haspopup="true" aria-expanded="false">Elèves
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Ajouter</a></li>
+                                    <li><a href="#">Imprimer</a></li>
+                                    <li><a href="#">Rechercher</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <!--<li class="dropdown-header">Liste</li>-->
+                                    <li><a href="#">Liste des élèves</a></li>
+                                    <li><a href="#">Liste par années</a></li>
+                                    <li><a href="#">Liste par classe</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div><!--/.container-fluid -->
+            </nav><!-- end static navbar -->
+        </div> <!-- /container -->
+
+        <div class="container">
+            <section>
+                <div class="header">
+                    <h1>Test de BootStrap en Wicket</h1>
+                </div>
+            </section>
+        </div>
+
+        <div class="container">
+            <footer>
+                &copy; par <a href="http://www.cagecfi.com">CAGECFI</a>
+            </footer>
+        </div>
+    </body>
+</html>

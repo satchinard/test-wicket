@@ -1,7 +1,7 @@
 package com.wicket.test.inscription;
 
-import com.wicket.test.data.service.IPersonneService;
 import com.wicket.test.data.entite.Personne;
+import com.wicket.test.data.service.IPersonneService;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -56,18 +56,16 @@ public class InscriptionPage extends WebPage {
     private final Form<Inscription> formInscript;
 
     private Locale langue;
-    private List<Inscription> lesInscriptions = new LinkedList<Inscription>();
+    private List<Inscription> lesInscriptions = new LinkedList<>();
 
     @SpringBean
     private IPersonneService personneService;
 
     public InscriptionPage() {
 
-//        add(new Label("dateJour",
-//                Instant.now()));
         add(new Label("dateJour",
                 Calendar.getInstance(getSession().getLocale()).get(Calendar.DATE)
-                + " " + Calendar.getInstance(getSession().getLocale()).get(Calendar.LONG_FORMAT)
+                + " " + Calendar.getInstance(getSession().getLocale()).get(Calendar.LONG)
                 + " " + Calendar.getInstance(getSession().getLocale()).get(Calendar.YEAR)));
         getSession().setLocale(Locale.ENGLISH);
 
@@ -133,9 +131,13 @@ public class InscriptionPage extends WebPage {
 
         formInscript.add(new DropDownChoice("nationalite", nationalites));
 
+        final TextField nbAnneeEtude = new TextField("nbAnneeEtude");
+        nbAnneeEtude.setOutputMarkupId(true).add(new RangeValidator(6, 15));
+        nbAnneeEtude.setVisible(false);
+
         final WebMarkupContainer wmc = new WebMarkupContainer("nbAnnee");
         wmc.setOutputMarkupId(true);
-        formInscript.add(wmc.setVisible(false));
+        formInscript.add(wmc);
 
         RadioGroup scolarite = new RadioGroup("alphabetise");
         scolarite.add(new Radio("non", Model.of(false)).setLabel(Model.of("Non")));
@@ -146,13 +148,12 @@ public class InscriptionPage extends WebPage {
 
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-                wmc.setVisible(true);
-                target.add(wmc);
+                nbAnneeEtude.setVisible(true);
+                target.add(nbAnneeEtude);
             }
         });
 
-        wmc.add(new TextField("nbAnneeEtude").setOutputMarkupId(true)
-                .add(new RangeValidator(6, 15)));
+        wmc.add(nbAnneeEtude);
 
         formInscript.add(new RadioChoice("statut", statuts));
 
@@ -182,34 +183,35 @@ public class InscriptionPage extends WebPage {
     }
 
     private ListView<Inscription> getLesInscrits() {
-        ListView<Inscription> inscrits = new ListView<Inscription>("inscrits", new PropertyModel<List<Inscription>>(this, "lesInscriptions")) {
-
-            @Override
-            protected void populateItem(ListItem<Inscription> item) {
-                final Inscription i = item.getModelObject();
-                item.add(new Label("nom", new PropertyModel(i, "nom")));
-                item.add(new Label("prenom", new PropertyModel(i, "prenom")));
-                item.add(new Label("dateNaissance", new PropertyModel(i, "dateNaissance")));
-                item.add(new Label("statut", new PropertyModel(i, "statut")));
-                item.add(new Label("alphabetise", new PropertyModel(i, "alphabetise")));
-                item.add(new Label("nbAnneeEtude", new PropertyModel(i, "nbAnneeEtude")));
-                item.add(new Link("supprimer") {
+        ListView<Inscription> inscrits = new ListView<Inscription>("inscrits",
+                new PropertyModel<List<Inscription>>(this, "lesInscriptions")) {
 
                     @Override
-                    public void onClick() {
-                        getLesInscriptions().remove(i);
-                    }
-                });
-                item.add(new Link("modifier") {
+                    protected void populateItem(ListItem<Inscription> item) {
+                        final Inscription i = item.getModelObject();
+                        item.add(new Label("nom", new PropertyModel(i, "nom")));
+                        item.add(new Label("prenom", new PropertyModel(i, "prenom")));
+                        item.add(new Label("dateNaissance", new PropertyModel(i, "dateNaissance")));
+                        item.add(new Label("statut", new PropertyModel(i, "statut")));
+                        item.add(new Label("alphabetise", new PropertyModel(i, "alphabetise")));
+                        item.add(new Label("nbAnneeEtude", new PropertyModel(i, "nbAnneeEtude")));
+                        item.add(new Link("supprimer") {
 
-                    @Override
-                    public void onClick() {
-                        formInscript.setModelObject(i);
-                        getLesInscriptions().remove(i);
+                            @Override
+                            public void onClick() {
+                                getLesInscriptions().remove(i);
+                            }
+                        });
+                        item.add(new Link("modifier") {
+
+                            @Override
+                            public void onClick() {
+                                formInscript.setModelObject(i);
+                                getLesInscriptions().remove(i);
+                            }
+                        });
                     }
-                });
-            }
-        };
+                };
         inscrits.setReuseItems(true);
         inscrits.setOutputMarkupId(true);
         return inscrits;
@@ -262,18 +264,22 @@ class InscriptionProvider implements IDataProvider<Inscription> {
         this.lesInscrits = lesInscrits;
     }
 
+    @Override
     public Iterator<? extends Inscription> iterator(long arg0, long arg1) {
         return lesInscrits.subList((int) arg0, (int) arg1).iterator();
     }
 
+    @Override
     public long size() {
         return lesInscrits.size();
     }
 
+    @Override
     public IModel<Inscription> model(Inscription object) {
         return Model.of(object);
     }
 
+    @Override
     public void detach() {
 
     }

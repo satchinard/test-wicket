@@ -59,20 +59,22 @@
                                 <td><label><wicket:message key="cursus"></wicket:message></label></td>
                                 <td><select wicket:id="cursus"/></td>
                                 <td colspan="2">
-                                    <span wicket:id="nbAnnee">
-                                        <label><wicket:message key="nbAnnee"></wicket:message></label>
-                                        <input type="text" wicket:id="nbAnneeEtude"/>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style="text-align: right">
-                                    <input type="submit" value="Valider" wicket:message="value:valider"/>
-                                </td>
-                                <td colspan="2">
-                                    <input type="reset" value="Annuler" wicket:message="value:annuler"/>
-                                </td>
-                            </tr>
+                        <wicket:enclosure child="nbAnnee:nbAnneeEtude">
+                            <span wicket:id="nbAnnee">
+                                <label><wicket:message key="nbAnnee"></wicket:message></label>
+                                <input type="text" wicket:id="nbAnneeEtude"/>
+                            </span>
+                        </wicket:enclosure>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: right">
+                                <input type="submit" value="Valider" wicket:message="value:valider"/>
+                            </td>
+                            <td colspan="2">
+                                <input type="reset" value="Annuler" wicket:message="value:annuler"/>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </fieldset>

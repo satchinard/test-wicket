@@ -1,7 +1,10 @@
 package com.wicket.test;
 
-import com.wicket.test.personne.PersonnePage;
+import com.wicket.test.bootstrap.pur.BasePage;
+import de.agilecoders.wicket.core.Bootstrap;
+import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import org.apache.wicket.Page;
+import org.apache.wicket.javascript.DefaultJavaScriptCompressor;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.util.lang.Bytes;
@@ -14,7 +17,8 @@ public class TestApplication extends WebApplication {
      */
     @Override
     public Class<? extends Page> getHomePage() {
-        return PersonnePage.class;
+//        return BootStrapPur.class;
+        return BasePage.class;
     }
 
     @Override
@@ -27,7 +31,12 @@ public class TestApplication extends WebApplication {
         getApplicationSettings().setUploadProgressUpdatesEnabled(true);
         getApplicationSettings().setDefaultMaximumUploadSize(Bytes.megabytes(5));
 
+        getResourceSettings().setJavaScriptCompressor(new DefaultJavaScriptCompressor());
+        getResourceSettings().setUseMinifiedResources(true);
+
         getComponentInstantiationListeners().add(new SpringComponentInjector(this));
+        BootstrapSettings settings = new BootstrapSettings();
+        Bootstrap.install(this, settings);
     }
 
 }

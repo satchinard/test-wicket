@@ -17,9 +17,28 @@
         <spring.version>4.3.4.RELEASE</spring.version>
     </properties>
 
+    <!--    <repositories>
+        <repository>
+            <id>ojdbc</id>
+            <url>https://maven.atlassian.com/3rdparty/</url>
+        </repository>
+    </repositories>-->
+
     <dependencies>
 
         <!-- javax -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>17.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.newrelic.agent.java</groupId>
+            <artifactId>newrelic-api</artifactId>
+            <version>3.7.0</version>
+            <type>jar</type>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -80,6 +99,44 @@
             <artifactId>wicket-util</artifactId>
             <version>${wicket.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-bootstrap</artifactId>
+            <!--<version>${wicket.version}</version>-->
+            <version>0.17</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/de.agilecoders.wicket/bootstrap -->
+        <!--        <dependency>
+            <groupId>de.agilecoders.wicket</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>0.5.4</version>
+        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/de.agilecoders.wicket/wicket-bootstrap-core -->
+        <dependency>
+            <groupId>de.agilecoders.wicket</groupId>
+            <artifactId>wicket-bootstrap-core</artifactId>
+            <version>0.10.11</version>
+        </dependency>
+        <dependency>
+            <groupId>de.agilecoders.wicket</groupId>
+            <artifactId>wicket-bootstrap-extensions</artifactId>
+            <version>0.10.11</version>
+        </dependency>
+        <dependency>
+            <groupId>de.agilecoders.wicket</groupId>
+            <artifactId>wicket-bootstrap-themes</artifactId>
+            <version>0.10.11</version>
+        </dependency>
+        <!--        <dependency>
+            <groupId>de.agilecoders.wicket</groupId>
+            <artifactId>wicket-bootstrap-samples</artifactId>
+            <version>0.10.6</version>
+        </dependency>-->
+
+
 
         <!-- slf4j -->
         <dependency>
@@ -102,11 +159,27 @@
             <version>5.1.18</version>
         </dependency>
 
+        <!-- ojdbc -->
+        <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
+        <!--        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4.0-atlassian-hosted</version>
+        </dependency>-->
+
+
         <!-- tomcat jdbc -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
             <version>7.0.34</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.odlabs.wiquery/wiquery-jquery-ui -->
+        <dependency>
+            <groupId>org.odlabs.wiquery</groupId>
+            <artifactId>wiquery-jquery-ui</artifactId>
+            <version>6.13.0</version>
         </dependency>
 
     </dependencies>
@@ -120,6 +193,12 @@
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.2</version>
+                <inherited>true</inherited>
             </plugin>
         </plugins>
         <resources>

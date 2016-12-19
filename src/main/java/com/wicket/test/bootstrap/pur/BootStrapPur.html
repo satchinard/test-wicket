@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta wicket:id="charset">
+        <meta wicket:id="viewport">
+        <meta wicket:id="description">
+        <meta wicket:id="author">
+        <title>Test de BootStrap</title>
+    </head>
+    <body>
+        <div class="container">
+            <div wicket:id="navbarId" ></div>
+            <h1 wicket:id="entete">Mon entête</h1>
+            <form wicket:id="forms" class="row col-md-12">
+                <div class="form-group">
+                    <fieldset>
+                        <legend>Vos informations</legend>
+                        <div class="form-group col-md-4">
+                            <label>Nom</label>
+                            <input type="text" class="form-control" placeholder="Votre nom...">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            <label>Check box</label>
+                            <input type="checkbox" wicket:id="checkbox" class="form-control" />
+                            <span wicket:id="radio" class="row"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Vos outils de programmation</label>
+                            <select wicket:id="list" class="form-control">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <form wicket:id="form" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label>Date de naissance</label> <br />
+                            <input wicket:id="dateField" type="text" class="form-control" placeholder="Votre date de naissance" />
+                        </div>
+                        <div class="form-group">
+                            <button wicket:id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--<button wicket:id="submit"></button>-->
+        </div>
+    </body>
+</html>
