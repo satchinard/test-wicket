@@ -1,7 +1,6 @@
 package com.wicket.test.bootstrap;
 
 import com.wicket.test.web.TestWebResources;
-import com.wicket.test.web.TestWebResources;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
