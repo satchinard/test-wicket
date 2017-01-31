@@ -12,9 +12,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hibernate.entity.version>4.3.1.Final</hibernate.entity.version>
-        <wicket.version>7.4.0</wicket.version>
-        <spring.version>4.3.4.RELEASE</spring.version>
+        <hibernate.entity.version>5.2.6.Final</hibernate.entity.version>
+        <wicket.version>7.6.0</wicket.version>
+        <spring.version>4.3.5.RELEASE</spring.version>
     </properties>
 
     <!--    <repositories>
@@ -30,19 +30,19 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>17.0</version>
+            <version>21.0</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.newrelic.agent.java</groupId>
             <artifactId>newrelic-api</artifactId>
-            <version>3.7.0</version>
+            <version>3.35.2</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
-            <version>6.0</version>
+            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -142,7 +142,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.21</version>
+            <version>1.7.22</version>
         </dependency>
 
         <!-- hibernate -->
@@ -156,7 +156,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.18</version>
+            <version>6.0.5</version>
         </dependency>
 
         <!-- ojdbc -->
@@ -172,7 +172,7 @@
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
-            <version>7.0.34</version>
+            <version>8.5.9</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.odlabs.wiquery/wiquery-jquery-ui -->
@@ -199,7 +199,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.6.1</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
@@ -212,7 +212,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-                <version>2.2</version>
+                <version>2.3</version>
                 <inherited>true</inherited>
             </plugin>
             <plugin>
