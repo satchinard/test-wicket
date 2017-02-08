@@ -1,6 +1,11 @@
 package com.wicket.test.links;
 
 import com.wicket.test.HomePage;
+import com.wicket.test.bootstrap.pur.BootStrapPur;
+import com.wicket.test.css.js.MenuDeroulant;
+import com.wicket.test.forms.Formulaire;
+import com.wicket.test.inscription.InscriptionPage;
+import com.wicket.test.personne.PersonnePage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -79,6 +84,11 @@ public class Liens extends WebPage {
                 .add(new Label("nbClicks", new PropertyModel(this, "clickLinkCount"))));
 
         add(new BookmarkablePageLink("lien8", HomePage.class, null));
+        add(new BookmarkablePageLink("lien9", InscriptionPage.class, null));
+        add(new BookmarkablePageLink("lien10", BootStrapPur.class));
+        add(new BookmarkablePageLink("lien11", MenuDeroulant.class));
+        add(new BookmarkablePageLink("lien12", Formulaire.class));
+        add(new BookmarkablePageLink("lien13", PersonnePage.class));
     }
 
     public int getClickLinkCount() {

@@ -7,12 +7,25 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Releases</name>
+            <url>http://192.168.1.63:8081/repository/maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Snapshot</name>
+            <url>http://192.168.1.63:8081/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <name>test-wicket</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hibernate.entity.version>5.2.6.Final</hibernate.entity.version>
+        <hibernate.entity.version>5.0.11.Final</hibernate.entity.version>
         <wicket.version>7.6.0</wicket.version>
         <spring.version>4.3.5.RELEASE</spring.version>
     </properties>
@@ -30,13 +43,13 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>21.0</version>
+            <version>20.0</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.newrelic.agent.java</groupId>
             <artifactId>newrelic-api</artifactId>
-            <version>3.35.2</version>
+            <version>3.35.1</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -156,7 +169,8 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.5</version>
+            <version>5.1.40</version>
+            <!--<version>6.0.5</version>-->
         </dependency>
 
         <!-- ojdbc -->
@@ -196,6 +210,18 @@
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <!--                <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+                    <server>tomcatserver</server>
+                    <path>/test-wicket</path>
+                    <username>admin</username>
+                    <password>admin</password>
+                </configuration>-->
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

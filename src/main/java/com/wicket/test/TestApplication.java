@@ -1,6 +1,6 @@
 package com.wicket.test;
 
-import com.wicket.test.inscription.InscriptionPage;
+import com.wicket.test.links.Liens;
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import org.apache.wicket.Page;
@@ -17,9 +17,7 @@ public class TestApplication extends WebApplication {
      */
     @Override
     public Class<? extends Page> getHomePage() {
-//        return BootStrapPur.class;
-//        return BasePage.class;
-        return InscriptionPage.class;
+        return Liens.class;
     }
 
     @Override
