@@ -38,4 +38,29 @@
         <filter-name>TestWicket</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <!-- apm moskito test -->
+    <listener>
+        <listener-class>
+            net.anotheria.moskito.web.session.SessionCountProducer
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            net.anotheria.moskito.web.session.SessionByTldListener
+        </listener-class>
+    </listener> 
+    <filter>
+        <filter-name>RequestURIFilter</filter-name>
+        <filter-class>net.anotheria.moskito.web.filters.RequestURIFilter</filter-class>
+        <init-param>
+            <param-name>limit</param-name>
+            <param-value>100</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>RequestURIFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- fin apm moskito test -->
 </web-app>
