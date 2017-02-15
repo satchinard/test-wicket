@@ -35,8 +35,8 @@
         <url>scm:git:https://github.com/satchinard/test-wicket.git</url>
         <developerConnection>scm:git:https://github.com/satchinard/test-wicket.git</developerConnection>
         <!--<tag>HEAD</tag>-->
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <!--  <scm>
       <connection>scm:svn:http://somerepository.com/svn_repo/trunk</connection>
@@ -52,7 +52,13 @@
         <hibernate.entity.version>5.0.11.Final</hibernate.entity.version>
         <wicket.version>7.6.0</wicket.version>
         <spring.version>4.3.5.RELEASE</spring.version>
+        <moskito.version>2.7.7</moskito.version>
+        <agilecoder.version>2.0.0-M2</agilecoder.version>
     </properties>
+
+    <prerequisites>
+        <maven>3.0.4</maven>
+    </prerequisites>
 
     <!--    <repositories>
         <repository>
@@ -309,6 +315,15 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <finalName>test-wicket-src.${project.version}</finalName>
+                    <attach>false</attach>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
                 <configuration>
@@ -476,6 +491,39 @@
                         <reports>
                             <report>aggregate</report>
                             <report>test-aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.3</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>dependency-updates-report</report>
+                            <report>plugin-updates-report</report>
+                            <report>property-updates-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changelog-plugin</artifactId>
+                <version>2.3</version>
+                <reportSets>
+                    <reportSet>
+                        <id>dual-report</id>
+                        <configuration>
+                            <type>range</type>
+                            <range>30</range>
+                        </configuration>
+                        <reports>
+                            <report>changelog</report>
+                            <report>file-activity</report>
+                            <!--<report>dev-activity</report>-->
                         </reports>
                     </reportSet>
                 </reportSets>
