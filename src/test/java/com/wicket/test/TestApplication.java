@@ -1,7 +1,6 @@
 package com.wicket.test;
 
 import com.wicket.test.links.Liens;
-import junit.framework.TestCase;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.http.mock.MockServletContext;
 import org.apache.wicket.util.tester.WicketTester;
@@ -19,8 +18,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author cagecfi
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:WEB-INF/ApplicationContext.xml"})
-public class TestApplication extends TestCase {
+@ContextConfiguration(locations = {"classpath:ApplicationContext.xml"})
+public class TestApplication {
 
     private WicketTester tester;
 
@@ -35,22 +34,19 @@ public class TestApplication extends TestCase {
     }
 
     @Before
-    @Override
     public void setUp() {
         application = new TestWicketApplication();
-        tester = new WicketTester(application, new MockServletContext(application, "/"));
+        tester = new WicketTester(application, new MockServletContext(application, "/test-wicket"));
     }
 
     @After
-    @Override
     public void tearDown() {
         tester.destroy();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
     @Test
+//    @Transactional
+//    @Rollback(true)
     public void HomePageTest() {
         tester.assertRenderedPage(Liens.class);
         tester.clickLink("lien4");

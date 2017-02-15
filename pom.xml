@@ -49,11 +49,12 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hibernate.entity.version>5.0.11.Final</hibernate.entity.version>
+        <hibernate.entity.version>5.1.0.Final</hibernate.entity.version>
         <wicket.version>7.6.0</wicket.version>
-        <spring.version>4.3.5.RELEASE</spring.version>
+        <spring.version>4.3.2.RELEASE</spring.version>
         <moskito.version>2.7.7</moskito.version>
         <agilecoder.version>2.0.0-M2</agilecoder.version>
+        <jetty9.version>9.4.0.v20161208</jetty9.version>
     </properties>
 
     <prerequisites>
@@ -273,6 +274,7 @@
         <!-- apm moskito -->
 
         <!-- unit testing -->
+        <!-- other dependencies -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -281,18 +283,42 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>4.3.2.RELEASE</version>
+            <version>${spring.version}</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>
-        <!-- wtp -->
+
+        <!-- end other dependencies -->
+
+        <!-- jetty -->
         <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>${jetty9.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty9.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-jmx</artifactId>
+            <version>${jetty9.version}</version>
+            <scope>test</scope>
+        </dependency>-->
+        <!--  end jetty -->
+
+        <!-- wtp -->
+        <!--        <dependency>
             <groupId>com.ttdev</groupId>
             <artifactId>wpt-core</artifactId>
             <version>3.0.1</version>
@@ -307,12 +333,27 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>5.13.1</version>
-        </dependency>
+        </dependency>-->
+        <!-- end wtp -->
         <!-- end unit testing -->
     </dependencies>
     <build>
         <finalName>test-wicket.${project.version}</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.26</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>8383</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
