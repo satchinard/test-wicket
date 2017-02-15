@@ -1,6 +1,7 @@
 package com.wicket.test;
 
 import com.wicket.test.links.Liens;
+import junit.framework.TestCase;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.http.mock.MockServletContext;
 import org.apache.wicket.util.tester.WicketTester;
@@ -19,7 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:WEB-INF/ApplicationContext.xml"})
-public class TestApplication {
+public class TestApplication extends TestCase {
 
     private WicketTester tester;
 
@@ -34,12 +35,14 @@ public class TestApplication {
     }
 
     @Before
+    @Override
     public void setUp() {
         application = new TestWicketApplication();
         tester = new WicketTester(application, new MockServletContext(application, "/"));
     }
 
     @After
+    @Override
     public void tearDown() {
         tester.destroy();
     }
