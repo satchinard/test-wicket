@@ -16,9 +16,11 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name = "INSCRIPTION")
+//@SequenceGenerator(name = "INSCRIPTIONS_SEQ_GEN")
 public class Inscription implements Serializable {
 
     @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "INSCRIPTIONS_GEN")
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;

@@ -14,9 +14,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PERSONNE")
+//@SequenceGenerator(name = "PERSONNES_SEQ_GEN")
 public class Personne implements Serializable {
 
     @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "PERSONNES_GEN")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "NOM")

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<root>
+     MOSKITO APPENDER DECLARATION START
+
+    <appender name="MoskitoDefaultFileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/monitoring_msk.log" />
+        <param name="MaxFileSize" value="100MB" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="Threshold" value="INFO" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="Moskito5mFileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/monitoring_msk_5m.log" />
+        <param name="MaxFileSize" value="100MB" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="Threshold" value="INFO" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="Moskito15mFileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/monitoring_msk_15m.log" />
+        <param name="MaxFileSize" value="100MB" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="Threshold" value="DEBUG" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="Moskito1hFileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/monitoring_msk_1h.log" />
+        <param name="MaxFileSize" value="100MB" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="Threshold" value="INFO" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="Moskito1dFileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/monitoring_msk_1d.log" />
+        <param name="MaxFileSize" value="100MB" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="Threshold" value="INFO" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %m%n"/>
+        </layout>
+    </appender>
+
+     /Moskito Appender DECLARATION END
+
+     Moskito LOGGER DECLARATION START
+
+    <logger name="MoskitoDefault" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="MoskitoDefaultFileAppender"/>
+    </logger>
+
+    <logger name="Moskito5m" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="Moskito5mFileAppender"/>
+    </logger>
+
+    <logger name="Moskito15m" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="Moskito15mFileAppender"/>
+    </logger>
+
+    <logger name="Moskito1h" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="Moskito1hFileAppender"/>
+    </logger>
+
+    <logger name="Moskito1d" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="Moskito1dFileAppender"/>
+    </logger>
+
+     /Moskito LOGGER DECLARATION END
+</root>-->
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <param name="Threshold" value="INFO"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %-5p %c - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="InfoAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/moskitodemo-info.log"/>
+        <param name="Threshold" value="INFO"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %-5p %c - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- moskito appenders  begin-->
+    <appender name="MoskitoAlertAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/moskito_alerts.log"/>
+        <param name="Threshold" value="INFO"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %-5p %c - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="MoskitoDefaultAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/moskito_default.log"/>
+        <param name="Threshold" value="INFO"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %-5p %c - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="Moskito5mAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/moskito_5m.log"/>
+        <param name="Threshold" value="INFO"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %-5p %c - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="MoskitoBIDefaultAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/moskito_bi_default.log"/>
+        <param name="Threshold" value="INFO"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %-5p %c - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="MoskitoBI5mAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/moskito_bi_5m.log"/>
+        <param name="Threshold" value="INFO"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%r %d{ISO8601} %-5p %c - %m%n"/>
+        </layout>
+    </appender>
+
+
+    <logger name="MoskitoAlert" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="MoskitoAlertAppender"/>
+    </logger>
+    <logger name="MoskitoDefault" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="MoskitoDefaultAppender"/>
+    </logger>
+    <logger name="Moskito5m" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="Moskito5mAppender"/>
+    </logger>
+    <logger name="MoskitoBIDefault" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="MoskitoBIDefaultAppender"/>
+    </logger>
+    <logger name="MoskitoBI5m" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="MoskitoBI5mAppender"/>
+    </logger>
+
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="ConsoleAppender"/>
+        <appender-ref ref="InfoAppender"/>
+    </root>
+
+</log4j:configuration>

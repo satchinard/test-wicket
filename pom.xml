@@ -7,18 +7,31 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <!--    <scm>
+        <connection></connection>
+        <url></url>
+        <developerConnection></developerConnection>
+    </scm>-->
+
     <distributionManagement>
         <repository>
             <id>nexus</id>
             <name>Releases</name>
-            <url>http://192.168.1.63:8081/repository/maven-releases</url>
+            <url>http://192.168.1.71:8081/repository/cagecfi-releases</url>
         </repository>
         <snapshotRepository>
             <id>nexus</id>
             <name>Snapshot</name>
-            <url>http://192.168.1.63:8081/repository/maven-snapshots</url>
+            <url>http://192.168.1.71:8081/repository/cagecfi-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <scm>
+        <connection>scm:git:https://github.com/satchinard/test-wicket.git</connection>
+        <!--<url>scm:git:https://perfectvision.cagecfi.com/gitblit/r/cagecfi/perfect.git</url>-->
+        <url>scm:git:https://github.com/satchinard/test-wicket.git</url>
+        <developerConnection>scm:git:https://github.com/satchinard/test-wicket.git</developerConnection>
+    </scm>
 
     <name>test-wicket</name>
     <url>http://maven.apache.org</url>
@@ -52,6 +65,7 @@
             <version>3.35.1</version>
             <type>jar</type>
         </dependency>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -214,9 +228,84 @@
             <artifactId>moskito-webui</artifactId>
             <version>2.7.6</version>
         </dependency>
+        <dependency>
+            <groupId>net.anotheria</groupId>
+            <artifactId>moskito-core</artifactId>
+            <version>2.7.6</version>
+        </dependency>
+        <dependency>
+            <groupId>net.anotheria</groupId>
+            <artifactId>moskito-web</artifactId>
+            <version>2.7.6</version>
+        </dependency>
+        <!--        <dependency>
+            <groupId>org.moskito</groupId>
+            <artifactId>moskito-central-embedded-connector</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.moskito</groupId>
+            <artifactId>moskito-central-storages</artifactId>
+            <version>1.1.1</version>
+        </dependency>-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.8</version>
+        </dependency>
+        <!-- apm moskito -->
+
+        <!-- unit testing -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.2.RELEASE</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <!-- wtp -->
+        <dependency>
+            <groupId>com.ttdev</groupId>
+            <artifactId>wpt-core</artifactId>
+            <version>3.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ttdev</groupId>
+            <artifactId>wpt-runtime</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>5.13.1</version>
+        </dependency>
+        <!-- end unit testing -->
     </dependencies>
     <build>
+        <finalName>test-wicket.${project.version}</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <tagNameFormat>${project.version}</tagNameFormat>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <releaseProfiles>releases</releaseProfiles>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -236,6 +325,7 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
+                    <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
             <plugin>
@@ -366,4 +456,34 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <profiles>
+        <profile>
+            <id>releases</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.7</version>
+                        <executions>
+                            <execution>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <serverId>nexus-releases</serverId>
+                            <nexusUrl>http://192.168.1.71:8081/nexus/</nexusUrl>
+                            <skipStaging>true</skipStaging>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>

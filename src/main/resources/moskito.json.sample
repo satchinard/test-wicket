@@ -1,0 +1,209 @@
+{
+    "@pluginsConfig": {
+        "@plugins": [
+            {
+                "name": "EmbeddedCentralConnector",
+                "configurationName": "none",
+                "className": "org.moskito.central.connectors.embedded.EmbeddedConnector"
+            }
+        ]
+    },
+    "@thresholdsAlertsConfig": {
+        "@notificationProviders": [
+            {
+                "className": "net.anotheria.moskito.core.threshold.alerts.notificationprovider.LogFileNotificationProvider",
+                "parameter": "MoskitoAlert",
+                "guardedStatus": "GREEN"
+            }, {
+                "className": "net.anotheria.moskito.core.threshold.alerts.notificationprovider.MailNotificationProvider",
+                "parameter": "leon@leon-rosenberg.net",
+                "guardedStatus": "RED"
+            }, {
+                "className": "net.anotheria.moskito.core.threshold.alerts.notificationprovider.SysoutNotificationProvider",
+                "parameter": "",
+                "guardedStatus": "GREEN"
+            }
+        ],
+        "@alertHistoryConfig": {
+            "maxNumberOfItems": 500,
+            "toleratedNumberOfItems": 550
+        }
+    },
+    "@accumulatorsConfig": {
+        "accumulationAmount": 500,
+        "@accumulators": [
+            {
+                "name": "Configured SessionCount Cur 5m",
+                "producerName": "SessionCount",
+                "statName": "Sessions",
+                "valueName": "cur",
+                "intervalName": "5m"
+            }
+        ]
+    },
+    "@thresholdsConfig": {
+        "@thresholds": [
+            {
+                "name": "Configured-5m-ThreadCount",
+                "producerName": "ThreadCount",
+                "statName": "ThreadCount",
+                "valueName": "Current",
+                "intervalName": "5m",
+                "@guards": [
+                    {
+                        "value": "30",
+                        "direction": "DOWN",
+                        "status": "GREEN"
+                    },
+                    {
+                        "value": "30",
+                        "direction": "UP",
+                        "status": "YELLOW"
+                    },
+                    {
+                        "value": "45",
+                        "direction": "UP",
+                        "status": "ORANGE"
+                    },
+                    {
+                        "value": "60",
+                        "direction": "UP",
+                        "status": "RED"
+                    },
+                    {
+                        "value": "100",
+                        "direction": "UP",
+                        "status": "PURPLE"
+                    }
+                ]
+            }
+        ]
+    },
+    "@gaugesConfig": {
+        "@gauges": [
+            {
+                "name": "Constant",
+                "@minValue": {
+                    "constant": 0
+                },
+                "@currentValue": {
+                    "constant": 70
+                },
+                "@maxValue": {
+                    "constant": 100
+                },
+                "@zones": [
+                    {
+                        "color": "green",
+                        "left": 0,
+                        "right": 0.25
+                    },
+                    {
+                        "color": "yellow",
+                        "left": 0.25,
+                        "right": 0.5
+                    },
+                    {
+                        "color": "orange",
+                        "left": 0.5,
+                        "right": 0.75
+                    },
+                    {
+                        "color": "red",
+                        "left": 0.75,
+                        "right": 1
+                    }
+                ]
+
+            },
+            {
+                "name": "Sessions",
+                "@minValue": {
+                    "constant": 0
+                },
+                "@currentValue": {
+                    "producerName": "SessionCount",
+                    "statName": "Sessions",
+                    "valueName": "cur",
+                    "intervalName": "default"
+                },
+                "@maxValue": {
+                    "producerName": "SessionCount",
+                    "statName": "Sessions",
+                    "valueName": "max",
+                    "intervalName": "default"
+                }
+            },
+            {
+                "name": "Memory",
+                "caption": "Used memory",
+                "@minValue": {
+                    "constant": 0
+                },
+                "@currentValue": {
+                    "producerName": "Heap memory",
+                    "statName": "Heap memory",
+                    "valueName": "Used Mb",
+                    "intervalName": "default"
+                },
+                "@maxValue": {
+                    "producerName": "JavaRuntimeMax",
+                    "statName": "JavaRuntimeMax",
+                    "valueName": "Current Mb",
+                    "intervalName": "default"
+                }
+            },
+            {
+                "name": "Blocked",
+                "caption": "Blocked Threads",
+                "@minValue": {
+                    "constant": 0
+                },
+                "@currentValue": {
+                    "producerName": "ThreadStates",
+                    "statName": "BLOCKED",
+                    "valueName": "Current",
+                    "intervalName": "1m"
+                },
+                "@maxValue": {
+                    "producerName": "ThreadCount",
+                    "statName": "ThreadCount",
+                    "valueName": "current",
+                    "intervalName": "default"
+                }
+            },
+            {
+                "name": "Running",
+                "caption": "Running Threads",
+                "@minValue": {
+                    "constant": 0
+                },
+                "@currentValue": {
+                    "producerName": "ThreadStates",
+                    "statName": "RUNNABLE",
+                    "valueName": "Current",
+                    "intervalName": "1m"
+                },
+                "@maxValue": {
+                    "producerName": "ThreadCount",
+                    "statName": "ThreadCount",
+                    "valueName": "current",
+                    "intervalName": "default"
+                }
+            }
+        ],
+        "@defaultZones": [
+            {
+                "color": "orange",
+                "left": 0.85,
+                "right": 0.9
+            },
+            {
+                "color": "red",
+                "left": 0.9,
+                "right": 1
+            }
+        ]
+
+    }
+}

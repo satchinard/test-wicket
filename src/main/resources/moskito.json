@@ -1,0 +1,86 @@
+{
+    "@thresholdsAlertsConfig": {
+        "@notificationProviders": [
+            {
+                "className": "net.anotheria.moskito.core.threshold.alerts.notificationprovider.LogFileNotificationProvider",
+                "parameter": "MoskitoAlert",
+                "guardedStatus": "GREEN"
+            }, {
+                "className": "net.anotheria.moskito.core.threshold.alerts.notificationprovider.MailNotificationProvider",
+                "parameter": "leon@leon-rosenberg.net",
+                "guardedStatus": "RED"
+            }, {
+                "className": "net.anotheria.moskito.core.threshold.alerts.notificationprovider.SysoutNotificationProvider",
+                "parameter": "",
+                "guardedStatus": "GREEN"
+            }
+        ],
+        "@alertHistoryConfig": {
+            "maxNumberOfItems": 500,
+            "toleratedNumberOfItems": 550
+        }
+
+    },
+    "@accumulatorsConfig": {
+        "accumulationAmount": 500,
+        "@accumulators": [
+            {
+                "name": "Configured SessionCount Cur 5m",
+                "producerName": "SessionCount",
+                "statName": "Sessions",
+                "valueName": "cur",
+                "intervalName": "5m"
+            }
+        ]
+    },
+    "@thresholdsConfig": {
+        "@thresholds": [
+            {
+                "name": "Configured-5m-ThreadCount",
+                "producerName": "ThreadCount",
+                "statName": "ThreadCount",
+                "valueName": "Current",
+                "intervalName": "5m",
+                "@guards": [
+                    {
+                        "value": "30",
+                        "direction": "DOWN",
+                        "status": "GREEN"
+                    },
+                    {
+                        "value": "30",
+                        "direction": "UP",
+                        "status": "YELLOW"
+                    },
+                    {
+                        "value": "45",
+                        "direction": "UP",
+                        "status": "ORANGE"
+                    },
+                    {
+                        "value": "60",
+                        "direction": "UP",
+                        "status": "RED"
+                    },
+                    {
+                        "value": "100",
+                        "direction": "UP",
+                        "status": "PURPLE"
+                    }
+                ]
+            }
+        ]
+    },
+    "@pluginsConfig": {
+        "@plugins": [
+            {
+                "name": "EmbeddedCentralConnector",
+                "configurationName": "none",
+                "className": "org.moskito.central.connectors.embedded.EmbeddedConnector"
+            }
+        ]
+    },
+    "mailhost": "mail.anotheria.net",
+    "mailuser": "moskito@anotheria.net",
+    "mailpassword": "Voa5kieS"
+}
