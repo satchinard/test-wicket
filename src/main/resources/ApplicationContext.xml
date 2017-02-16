@@ -16,6 +16,8 @@
 
     <context:property-override location="file:/${PERFECTPATH}/config-testWicket.properties" ignore-resource-not-found="true"/>
 
+    <bean id="testWicket" class="com.wicket.test.TestWicketApplication" />
+
     <!-- Propriétés spécifique à hibernate -->
     <bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="properties">

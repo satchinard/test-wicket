@@ -1,8 +1,8 @@
 package com.wicket.test;
 
+import com.wicket.test.inscription.InscriptionPage;
 import com.wicket.test.links.Liens;
-import org.apache.wicket.protocol.http.WebApplication;
-import org.apache.wicket.protocol.http.mock.MockServletContext;
+import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,7 +24,8 @@ public class TestApplication {
 
     private WicketTester tester;
 
-    private WebApplication application;
+    @Autowired
+    private TestWicketApplication application;
 
     @BeforeClass
     public static void setUpClass() {
@@ -35,8 +37,7 @@ public class TestApplication {
 
     @Before
     public void setUp() {
-        application = new TestWicketApplication();
-        tester = new WicketTester(application, new MockServletContext(application, "/test-wicket"));
+        tester = new WicketTester(application);
     }
 
     @After
@@ -45,10 +46,14 @@ public class TestApplication {
     }
 
     @Test
-//    @Transactional
-//    @Rollback(true)
     public void HomePageTest() {
+        tester.startPage(Liens.class);
         tester.assertRenderedPage(Liens.class);
-        tester.clickLink("lien4");
+        tester.clickLink("lien9");
+        tester.assertRenderedPage(InscriptionPage.class);
+        FormTester form = tester.newFormTester("monForm", false);
+        tester.isRequired("monForm:nom");
+        form.submit();
+        tester.assertNoInfoMessage();
     }
 }
