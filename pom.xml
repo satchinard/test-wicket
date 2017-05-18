@@ -337,6 +337,34 @@
         </dependency>-->
         <!-- end wtp -->
         <!-- end unit testing -->
+
+        <!-- test with selenium -->
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.10</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.53.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>2.53.1</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+
+        <!-- end test with selenium -->
+
+
+
+
+
     </dependencies>
     <build>
         <finalName>test-wicket.${project.version}</finalName>
